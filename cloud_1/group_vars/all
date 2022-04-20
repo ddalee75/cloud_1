@@ -1,0 +1,16 @@
+## Server
+
+host: webserver
+user: root
+IP: 51.158.75.16
+domain: "yes"
+domain_name: ddalee42.duckdns.org
+
+
+#docker environment 
+
+network_name: cloud_1
+
+bdd_vol: db_volume
+wp_vol: wp_volume
+ssl_vol: ssl_volume

@@ -1,0 +1,19 @@
+---
+
+- name: Create Docker network
+  docker_network:
+    name: "{{ network_name }}"
+
+- name: Create MariaDB volume
+  docker_volume: 
+    name: "{{ bdd_vol }}"
+
+- name: Create Wordpress volume  
+  docker_volume: 
+    name: "{{ wp_vol }}"
+
+- name: Create Cerbot volume
+  docker_volume:
+    name: "{{ ssl_vol }}"
+
+...
