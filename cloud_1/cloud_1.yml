@@ -21,6 +21,16 @@
   tags: 
     - setting_docker
   roles:
-    - 02-docker_setup
+    - 02_docker_setup
 
-
+- name: install nginx container on the client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags: 
+    - setting_nginx
+  roles:
+    - 03_nginx
