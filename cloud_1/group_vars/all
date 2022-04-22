@@ -1,7 +1,7 @@
 ## Server
 
 host: webserver
-user: root
+user: ddalee 
 IP: 51.158.75.16
 domain: "yes"
 domain_name: ddalee42.duckdns.org
@@ -14,3 +14,14 @@ network_name: cloud_1
 bdd_vol: db_volume
 wp_vol: wp_volume
 ssl_vol: ssl_volume
+
+
+# nginx environment
+
+httpd_dir: "{{ user }}/nginx_build"
+httpd_path: "{{ httpd_dir }}"
+httpd_image: nginx_img
+httpd_name: nginx_container
+
+httpd_root_path: /usr/local/nginx
+httpd_conf_path: /etc/nginx
