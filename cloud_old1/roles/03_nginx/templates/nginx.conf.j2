@@ -1,7 +1,13 @@
+server {
+
+	listen 80;
+	listen [::]:80;
+	server_name ddalee42.duckdns.org;
+	return 301 https://$host$request_uri;
+
+}
 
 server {
-	listen	80;
-	listen [::]:80;
 	listen	443 ssl;
 	listen [::]:443 ssl;
 	server_name	ddalee42.duckdns.org;
@@ -12,9 +18,6 @@ server {
 
 	root	/var/www/html;
 	index index.html index.htm index.php;
-	
-	 access_log /var/log/nginx/{{ domain | replace(".", "-") }}-access.log;
-   	 error_log /var/log/nginx/{{ domain | replace(".", "-") }}-error.log;
 
 	location / {
 		autoindex on;

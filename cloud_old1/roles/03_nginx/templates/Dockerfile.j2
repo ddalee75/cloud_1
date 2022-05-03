@@ -7,7 +7,7 @@ RUN apk update && apk upgrade && apk add --no-cache \
     nginx \ 
     openssl 
 
-RUN mkdir -p /etc/nginx/ssl
+RUN mkdir -p /ect/nginx/ssl
 RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
     -out /etc/ssl/ddalee.crt \
     -keyout /etc/ssl/ddalee.key \

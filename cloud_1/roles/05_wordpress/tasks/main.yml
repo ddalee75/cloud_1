@@ -1,0 +1,73 @@
+# configuration Wordpress
+
+
+---
+- name: Creer le repertoire d'installtion
+  file:
+    path: "{{ wp_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy index.html on the client server
+  template:
+    src: index.j2
+    dest: "{{ wp_dir }}/index.html"
+    owner: root
+    group: root
+    mode : '0644' 
+    
+- name: Copy Dockerfile on the client server
+  template:
+    src: Dockerfile.j2
+    dest: "{{ wp_dir }}/Dockerfile"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy Configure file on the client server
+  template:
+    src: configure.j2
+    dest: "{{ wp_dir }}/configure.sh"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy wwwconf on the client server
+  template:
+    src: www.j2
+    dest: "{{ wp_dir }}/www.conf"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy php-fpm.conf on the cllient server
+  template:
+    src: php-fpm.j2
+    dest: "{{ wp_dir }}/php.fpm.conf"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Build wordpress image
+  docker_image:
+    name: "{{ wp_image }}"
+    build:
+      path: "{{ db_dir }}"
+    source: build
+    state: present
+
+- name: Run wp_container
+  docker_container:
+    name: "{{ wp_name }}"
+    image: "{{ wp_image }}"
+    state: started
+    restart: yes
+    networks:
+      - name: "{{ network_name }}"
+    expose:
+      - "9000"
+    volumes:
+      - "{{ wp_vol }}:/var/www/html"
+

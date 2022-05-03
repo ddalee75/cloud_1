@@ -1,4 +1,4 @@
-## Server
+# Server
 
 host: webserver
 user: ddalee 
@@ -25,3 +25,33 @@ httpd_name: nginx_container
 
 httpd_root_path: /usr/local/nginx
 httpd_conf_path: /etc/nginx
+
+# Mariadb environment
+
+db_dir: "{{ user }}/mariadb_build"
+db_path: "{{ db_dir }}"
+db_image: mariadb_img
+db_name: mariadb_container
+
+
+MYSQL_HOST: mariadb
+MYSQL_ROOT_PWD: Dda3939889
+
+WP_DATABASE_NAME: wordpress
+WP_DATABASE_USR: chilee
+WP_DATABASE_PWD: Dda3939889
+
+# Wordpress environment
+wp_dir: "{{ user }}/wp_build"
+wp_path: "{{ wp_dir }}"
+wp_image: wp_img
+wp_name: wp_container
+
+
+WP_TITLE: chilee.42.fr
+WP_ADMIN_USR: Director
+WP_ADMIN_PWD: Dda3939889
+WP_ADMIN_EMAIL: ddalee75@gmail.com
+WP_USR: dda.lee
+WP_PWD: 3939889Dda
+WP_EMAIL: ddalee@hotmail.com
