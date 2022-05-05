@@ -1,0 +1,37 @@
+---
+- name: installer les conditions prealables sur le serveur
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}" 
+  become: yes
+  become_method: sudo
+  tags: 
+    - conditions_prealable
+  roles: 
+    - 01_install
+
+- name: Setup Docker's environment on the client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags: 
+    - setting_docker
+  roles:
+    - 02_docker_setup
+
+- name: Lancer docker-compose sur le server 
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags: 
+    - run_docker-compose
+  roles:
+    - 03_run_dockercompose
+

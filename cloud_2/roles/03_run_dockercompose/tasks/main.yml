@@ -1,0 +1,7 @@
+---
+
+- name: Run Docker-compose
+  docker_compose:
+     projet_src: /ddalee/inception/
+     state: present 
+...

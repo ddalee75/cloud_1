@@ -1,4 +1,19 @@
 ---
+- name: Creer repertoire pour volume on client server
+  file:
+    path: "/data/db"
+    state: directory 
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Creer le repertoire pour volume 2 on client server
+  file:
+    path: "/data/wp"
+    state: directory 
+    owner: root
+    group: root
+    mode: '0755'
 
 - name: Create Docker network
   docker_network:
@@ -7,13 +22,14 @@
 - name: Create MariaDB volume
   docker_volume: 
     name: "{{ bdd_vol }}"
+    driver_options:
+      type: btrfs
+      device: /root/data/bd
 
 - name: Create Wordpress volume  
   docker_volume: 
     name: "{{ wp_vol }}"
-
-- name: Create Cerbot volume
-  docker_volume:
-    name: "{{ ssl_vol }}"
-
+    driver_options:
+      type: btrfs
+      device: /root/data/wp
 ...

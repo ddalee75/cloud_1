@@ -1,0 +1,33 @@
+---
+- name: Creer le repertoire pour Volume website
+  file:
+    path: "{{ volume_path }}/website"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Creer le repertoire pour Volume mariadb
+  file:
+    path: "{{ volume_path }}/mariadb"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Creer le repertoire pour Volume data_2
+  file:
+    path: "{{ volume_path }}/data_2"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: deplacer le dossier docker-compose local to remote
+  copy:
+    src: inception
+    dest: "{{ user }}"
+    owner: root
+    owner: root
+    mode: '0755'   
+...

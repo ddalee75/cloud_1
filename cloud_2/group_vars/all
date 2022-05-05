@@ -1,0 +1,10 @@
+# Server
+
+host: webserver
+user: ddalee 
+IP: 51.158.75.16
+domain: "yes"
+domain_name: ddalee42.duckdns.org
+
+# volume path
+volume_path: "{{ user }}/data"

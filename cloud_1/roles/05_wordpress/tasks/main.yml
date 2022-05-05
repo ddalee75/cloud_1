@@ -45,7 +45,7 @@
 - name: Copy php-fpm.conf on the cllient server
   template:
     src: php-fpm.j2
-    dest: "{{ wp_dir }}/php.fpm.conf"
+    dest: "{{ wp_dir }}/php-fpm.conf"
     owner: root
     group: root
     mode: '0644'
