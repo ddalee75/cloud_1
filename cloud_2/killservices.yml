@@ -1,0 +1,21 @@
+---
+- name: supprimer les services containers on client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: stop et supprimer les containers on client server
+      shell:
+       cmd: "make fclean"
+       chdir: "/root/{{ user }}/inception/"
+
+    - name: effacer les images, les volumes, les networks 
+      shell:
+       cmd: "make prune"
+       chdir: "/root/{{ user }}/inception/"
+...
+
+

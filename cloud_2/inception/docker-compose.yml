@@ -5,6 +5,7 @@ services:
       build: requirements/nginx/
       container_name: nginx
       ports:
+       - "80:80"       
        - "443:443"
       volumes:
        - website:/var/www/html
@@ -59,6 +60,22 @@ services:
         WP_DATABASE_USR:  ${WP_DATABASE_USR}
         WP_DATABASE_PWD:  ${WP_DATABASE_PWD}
 
+    adminer:
+      build: requirements/bonus/adminer
+      container_name: adminer
+      environment:
+            ADMINER_DEFAULT_SERVER: mariadb
+            ADMINER_DESIGN: lucas-sandery
+      depends_on:
+        - mariadb
+      networks:
+        - chilee_network
+      volumes:
+        - website:/var/www/html
+      expose:
+        - "8080"
+
+
     redis:
       build: requirements/bonus/redis
       container_name: redis
@@ -88,12 +105,14 @@ services:
         FTP_PWD: ${FTP_PWD}
 
     portainer:
-      image: portainer/portainer-ce
+      build: requirements/bonus/portainer
       container_name: portainer
       ports:
         - "8000:8000"
         - "9443:9443"
       restart: always
+      networks:
+        - chilee_network
       security_opt:
         - no-new-privileges:true
       volumes:

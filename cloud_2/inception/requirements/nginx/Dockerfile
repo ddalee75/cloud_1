@@ -1,6 +1,6 @@
 FROM alpine
 
-EXPOSE 443
+EXPOSE 80 443
  
 #nginx SSL
 RUN apk update && apk upgrade && apk add --no-cache \

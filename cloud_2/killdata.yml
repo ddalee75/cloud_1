@@ -1,0 +1,15 @@
+---
+- name: supprimer les datas stockees on client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: supprimer now
+      shell:
+       cmd: "rm -rf {{ user }}"
+       chdir: /root/
+       
+

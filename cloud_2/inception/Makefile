@@ -14,8 +14,8 @@ fclean: clean
 
 
 prune: fclean
-	docker image prune -a
-	rm -rf ddalee
+	docker image prune -a -f
+	docker volume rm $$(docker volume ls -q)
 
 re: fclean all
 

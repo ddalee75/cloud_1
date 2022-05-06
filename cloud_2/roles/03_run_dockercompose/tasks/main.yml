@@ -1,7 +1,7 @@
 ---
 
-- name: Run Docker-compose
+- name: Run Docker-compose, install nginx, mariadb, wordpress...be patient
   shell:
     cmd: "docker-compose -f docker-compose.yml up -d --build"
-    chdir: /root/ddalee/inception/
+    chdir: "/root/{{ user }}/inception/"
 ...
