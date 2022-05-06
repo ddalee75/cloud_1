@@ -1,7 +1,7 @@
 ---
 
 - name: Run Docker-compose
-  docker_compose:
-     projet_src: /ddalee/inception/
-     state: present 
+  shell:
+    cmd: "docker-compose -f docker-compose.yml up -d --build"
+    chdir: /root/ddalee/inception/
 ...
