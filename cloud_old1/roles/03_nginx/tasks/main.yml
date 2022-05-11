@@ -2,7 +2,7 @@
 ---
 - name: Creer le repertoire d'installation
   file:
-    path: "{{ httpd_path }}"
+    path: "{{ nginx_path }}"
     state: directory 
     owner: root
     group: root
@@ -11,7 +11,7 @@
 - name: Copy nginx.conf on the client server
   template:
     src: nginx.conf.j2
-    dest: "{{ httpd_dir }}/nginx.conf"
+    dest: "{{ nginx_dir }}/nginx.conf"
     owner: root
     group: root
     mode: '0644'
@@ -19,27 +19,29 @@
 - name: Copy Dockefile on the client server
   template:
     src: Dockerfile.j2
-    dest: "{{ httpd_dir }}/Dockerfile"
+    dest: "{{ nginx_dir }}/Dockerfile"
     owner: root
     group: root
     mode: '0644'
 
 - name: Build Nginx image
   docker_image:
-    name: "{{ httpd_image }}"
+    name: "{{ nginx_image }}"
     build: 
-      path: "{{ httpd_dir }}"
+      path: "{{ nginx_dir }}"
     source: build
     state: present
 
 - name: Run Nginx container
   docker_container:
-    name: "{{ httpd_name }}"
-    image: "{{ httpd_image }}"
+    name: "{{ nginx_name }}"
+    image: "{{ nginx_image }}"
     state: started
     restart: yes
     networks:
        - name: "{{ network_name }}"
+    volumes:
+       - "{{ wp_vol }}:/var/www/html"
     ports:
        - "80:80"
        - "443:443"

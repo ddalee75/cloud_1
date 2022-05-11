@@ -1,0 +1,16 @@
+FROM alpine:3.13
+
+RUN	apk update && apk upgrade && apk add --no-cache \
+        mariadb \
+        mariadb-client
+
+ENV MYSQL_ROOT_PWD="{{ MYSQL_ROOT_PWD }}"
+ENV WP_DATABASE_NAME="{{ WP_DATABASE_NAME }}"
+ENV WP_DATABASE_USR="{{ WP_DATABASE_USR }}"
+ENV WP_DATABASE_PWD="{{ WP_DATABASE_PWD }}"
+
+        
+COPY configure.sh /tmp/configure.sh
+
+ENTRYPOINT ["sh", "/tmp/configure.sh"]
+

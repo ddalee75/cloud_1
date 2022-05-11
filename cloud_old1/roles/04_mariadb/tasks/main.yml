@@ -1,0 +1,44 @@
+# configuration mariadb
+---
+- name: Creer le repertoire d'installation
+  file:
+    path: "{{ db_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy Dockerfile on the client server
+  template:
+    src: Dockerfile.j2
+    dest: "{{ db_dir }}/Dockerfile"
+
+- name: Copy configuration on the client server
+  template:
+    src: configure.j2
+    dest: "{{ db_dir }}/configure.sh"
+
+- name: Build Mariadb image
+  docker_image:
+    name: "{{ db_image }}"
+    build:
+      path: "{{ db_dir }}"
+    source: build
+    state: present
+
+- name: Run Mariadb container
+  docker_container:
+    name: "{{ db_name }}"
+    image: "{{ db_image }}"
+    state: started
+    restart: yes
+    networks:
+       - name: "{{ network_name }}"
+    volumes:
+       - "{{ bdd_vol }}:/var/lib/mysql"
+    expose:
+       - "3306"
+
+...
+
+

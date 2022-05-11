@@ -1,5 +1,20 @@
 ---
+- name: Create localhost repetoire wp for volume
+  file:
+    path: "{{ user }}/data/wp"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
 
+- name: Create localhost repetoire db for volume
+  file:
+    path: "{{ user }}/data/db"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+    
 - name: Create Docker network
   docker_network:
     name: "{{ network_name }}"
@@ -7,13 +22,20 @@
 - name: Create MariaDB volume
   docker_volume: 
     name: "{{ bdd_vol }}"
+    driver_options:
+      type: none
+      device: "/root/{{ user }}/data/db"
+      o: bind
 
 - name: Create Wordpress volume  
   docker_volume: 
     name: "{{ wp_vol }}"
+    driver_options:
+      type: none
+      device: "/root/{{ user }}/data/wp"
+      o: bind
 
-- name: Create Cerbot volume
-  docker_volume:
-    name: "{{ ssl_vol }}"
+
+
 
 ...
