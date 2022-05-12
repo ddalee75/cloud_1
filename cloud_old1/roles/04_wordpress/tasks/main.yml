@@ -34,7 +34,7 @@
 
 - name: Copy www.conf on the client server
   copy:
-    src: ./roles/05_wordpress/templates/www.conf
+    src: ./roles/04_wordpress/templates/www.conf
     dest: "{{ wp_dir }}/www.conf"
     owner: root
     group: root
@@ -66,6 +66,8 @@
        - name: "{{ network_name }}"
     volumes:
        - "{{ wp_vol }}:/var/www/html"
+    links:
+       - mariadb
     expose:
        - "9000"
 

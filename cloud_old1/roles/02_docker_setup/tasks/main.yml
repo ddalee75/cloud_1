@@ -1,5 +1,5 @@
 ---
-- name: Create localhost repetoire wp for volume
+- name: Create repertoire wp for volume
   file:
     path: "{{ user }}/data/wp"
     state: directory
@@ -7,7 +7,7 @@
     group: root
     mode: '0755'
 
-- name: Create localhost repetoire db for volume
+- name: Create repertoire db for volume
   file:
     path: "{{ user }}/data/db"
     state: directory
@@ -34,8 +34,6 @@
       type: none
       device: "/root/{{ user }}/data/wp"
       o: bind
-
-
 
 
 ...

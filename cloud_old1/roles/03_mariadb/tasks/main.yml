@@ -1,4 +1,4 @@
-# configuration mariadb
+#configuration mariadb
 ---
 - name: Creer le repertoire d'installation
   file:

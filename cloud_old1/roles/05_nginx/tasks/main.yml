@@ -42,6 +42,8 @@
        - name: "{{ network_name }}"
     volumes:
        - "{{ wp_vol }}:/var/www/html"
+    links:
+       - wordpress
     ports:
        - "80:80"
        - "443:443"

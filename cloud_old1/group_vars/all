@@ -48,7 +48,7 @@ WP_DATABASE_NAME: wordpress
 WP_DATABASE_USR: chilee
 WP_DATABASE_PWD: Dda3939889
 
-WP_TITLE: chilee.42.fr
+WP_TITLE: chilee@42
 WP_ADMIN_USR: Director
 WP_ADMIN_PWD: Dda3939889
 WP_ADMIN_EMAIL: ddalee75@gmail.com
@@ -56,4 +56,9 @@ WP_USR: dda.lee
 WP_PWD: 3939889Dda
 WP_EMAIL: ddalee@hotmail.com
 
-
+# adminer environment
+adminer_dir: "{{ user }}/adminer_build"
+adminer_path: "{{ adminer_dir }}"
+adminer_image: adminer_img
+adminer_name: adminer
+adminer_design: lucas-sandery

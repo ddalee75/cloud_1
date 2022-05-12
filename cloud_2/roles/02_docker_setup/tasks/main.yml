@@ -28,6 +28,6 @@
     src: inception
     dest: "{{ user }}"
     owner: root
-    owner: root
+    group: root
     mode: '0755'   
 ...
