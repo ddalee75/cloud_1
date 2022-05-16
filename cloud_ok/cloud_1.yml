@@ -1,0 +1,73 @@
+---
+- name: installer les conditions prealables sur le serveur
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}" 
+  become: yes
+  become_method: sudo
+  tags: 
+    - conditions_prealable
+  roles: 
+    - 01_install
+
+- name: Setup Docker's environment on the client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags: 
+    - setting_docker
+  roles:
+    - 02_docker_setup
+
+- name: install mariadb container on the client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags:
+    - setting_mariadb
+  roles:
+    - 03_mariadb
+
+- name: install wordpress container on the client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags:
+   - setting_wordpress
+  roles:
+   - 04_wordpress
+
+- name: install nginx container on the client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags:
+    - setting_nginx
+  roles:
+    - 05_nginx
+
+- name: install adminer container on the client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tags: 
+   - setting_adminer
+  roles:
+   - 06_adminer  
+...

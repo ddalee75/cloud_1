@@ -1,0 +1,41 @@
+---
+- name: Creer le repertoire d'installation
+  file: 
+    path: "{{ adminer_path }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy Dockerfile on the client server
+  template: 
+    src: Dockerfile.j2
+    dest: "{{ adminer_dir }}/Dockerfile"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Build Adminer Image 
+  docker_image:
+    name: "{{ adminer_image }}"
+    build: 
+      path: "{{ adminer_dir }}"
+    source: build
+    state: present
+  environment:
+          - MYSQL_HOST: "{{ db_name }}" 
+  tags: adminer_install
+ 
+- name: Run Adminer container
+  tags: adminer_install
+  docker_container: 
+    name: "{{ adminer_name }}"  
+    image: "{{ adminer_image }}"
+    state: started
+    restart: yes
+    networks:
+       - name: "{{ network_name }}"
+         links:
+           - "{{ db_name }}"
+    ports:
+       - 8080:8080

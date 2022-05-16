@@ -1,0 +1,64 @@
+## Server
+
+host: webserver
+user: ddalee 
+IP: 51.158.75.16
+domain: "yes"
+domain_name: ddalee42.duckdns.org
+
+
+#docker environment 
+
+network_name: cloud_1
+
+wp_vol: wp_volume
+bdd_vol: db_volume
+
+#bdd_vol: "/root/{{ user }}/data/db" 
+#wp_vol: "/root/{{ user }}/data/wp" 
+
+
+# nginx environment
+
+nginx_dir: "{{ user }}/nginx_build"
+nginx_path: "{{ nginx_dir }}"
+nginx_image: nginx_img
+nginx_name: nginx
+
+nginx_root_path: /usr/local/nginx
+nginx_conf_path: /etc/nginx
+
+# mariadb environment
+
+db_dir: "{{ user }}/mariadb_build"
+db_path: "{{ db_dir }}"
+db_image: mariadb_img
+db_name: mariadb
+MYSQL_HOST: mariadb
+MYSQL_ROOT_PWD: Dda3939889
+
+# wordpress environment
+
+wp_dir: "{{ user }}/wordpress_build"
+wp_path: "{{ wp_dir }}"
+wp_image: wordpress_img
+wp_name: wordpress
+
+WP_DATABASE_NAME: wordpress
+WP_DATABASE_USR: chilee
+WP_DATABASE_PWD: Dda3939889
+
+WP_TITLE: chilee@42
+WP_ADMIN_USR: Director
+WP_ADMIN_PWD: Dda3939889
+WP_ADMIN_EMAIL: ddalee75@gmail.com
+WP_USR: dda.lee
+WP_PWD: 3939889Dda
+WP_EMAIL: ddalee@hotmail.com
+
+# adminer environment
+adminer_dir: "{{ user }}/adminer_build"
+adminer_path: "{{ adminer_dir }}"
+adminer_image: adminer_img
+adminer_name: adminer
+adminer_design: lucas-sandery

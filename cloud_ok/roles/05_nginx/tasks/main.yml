@@ -1,0 +1,50 @@
+# configuration nginx
+---
+- name: Creer le repertoire d'installation
+  file:
+    path: "{{ nginx_path }}"
+    state: directory 
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Copy nginx.conf on the client server
+  template:
+    src: nginx.conf.j2
+    dest: "{{ nginx_dir }}/nginx.conf"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Copy Dockefile on the client server
+  template:
+    src: Dockerfile.j2
+    dest: "{{ nginx_dir }}/Dockerfile"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Build Nginx image
+  docker_image:
+    name: "{{ nginx_image }}"
+    build: 
+      path: "{{ nginx_dir }}"
+    source: build
+    state: present
+
+- name: Run Nginx container
+  docker_container:
+    name: "{{ nginx_name }}"
+    image: "{{ nginx_image }}"
+    state: started
+    restart: yes
+    networks:
+       - name: "{{ network_name }}"
+    volumes:
+       - "{{ wp_vol }}:/var/www/html"
+    links:
+       - wordpress
+    ports:
+       - "80:80"
+       - "443:443"
+...  

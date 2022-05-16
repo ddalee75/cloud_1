@@ -1,0 +1,46 @@
+---
+- name: supprimer les services containers on client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: stop les containers-nginx on client server
+      shell:
+       cmd: "docker container stop nginx"
+       chdir: "/root/{{ user }}/"
+
+    - name: stop les container-wordpress on client server
+      shell:
+       cmd: "docker container stop wordpress"
+       chdir: "/root/{{ user }}/"
+
+    - name: stop les container-mariadb on client server
+      shell:
+       cmd: "docker container stop mariadb"
+       chdir: "/root/{{ user }}/"
+   
+    - name: stop les containers-adminer on client server
+      shell:
+       cmd: "docker container stop adminer"
+       chdir: "/root/{{ user }}/"
+
+    - name: effacer les containers 
+      shell:
+       cmd: "docker system prune -f"
+       chdir: "/root/{{ user }}/"
+
+    - name: effacer les images
+      shell:
+        cmd: "docker image prune -f -a"
+        chdir: "/root/{{ user }}/"
+    
+    - name: effacer les volumes
+      shell:
+        cmd: "docker volume rm $(docker volume ls -q)"
+        chdir: "/root/{{ user }}/"
+...
+
+

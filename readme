@@ -1,0 +1,8 @@
+Cloud2 = cloud fonctionne V2 
+       = ansible -> docker compose
+
+Cloud_ok = cloud fonctionne V1
+      = ansible -> module docker 
+
+Cloud_old1= cloud fonctionne V1 sans adminer
+     
