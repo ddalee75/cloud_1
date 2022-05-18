@@ -1,0 +1,16 @@
+---
+- name: supprimer les services containers on client server
+  vars_files:
+    - group_vars/all
+  gather_facts: no 
+  hosts: "{{ host }}"
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: effacer les datas on the client server 
+      shell:
+        cmd: "rm -rf {{ user }}"
+        chdir: "/root/"
+...
+
+

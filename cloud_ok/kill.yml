@@ -2,7 +2,7 @@
 - name: supprimer les services containers on client server
   vars_files:
     - group_vars/all
-  gather_facts: no
+  gather_facts: yes 
   hosts: "{{ host }}"
   become: yes
   become_method: sudo
