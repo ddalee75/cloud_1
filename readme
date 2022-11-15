@@ -1,12 +1,20 @@
-Cloud1 = cloud non fonctionne - 1 er verson echec
+Cloud1 = 1st version, doesn't work
 
-Cloud2 = cloud fonctionne V2 
-       = ansible -> docker compose
+Cloud2 = Version 2 works  
+       = ansible -> docker compose 
+       
+       - Copy my whole projet Inception in remote server  
+       - start the program Inception by Ansible in using command :
+         docker-compose -f docker-compose.yml up --build -d
+         * Inception : deployement of one website Wordpress in differents containers (nginx, mariadb, wordpress...) bye docker
 
-Cloud_ok = cloud fonctionne V1
+Cloud_ok = Version 1 works
       = ansible -> module docker 
+      Deployement the porgram Inception in remote sever by using module docker of Ansible
+      
+      
 
-Cloud_old1= cloud fonctionne V1 sans adminer
+Cloud_old1=  V1  works without adminer
 
 
-Cloud_1_correct.pdf = pour soutenance     
+Cloud_1_correct.pdf = for defense   
