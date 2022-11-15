@@ -18,3 +18,22 @@ Cloud_old1=  V1  works without adminer
 
 
 Cloud_1_correct.pdf = for defense   
+
+
+
+Overview
+• Deployment of a wordpress site in several containers (nginx, mariadb, wordpress, phpmyadmin) on a remote server (Scaleway) with Ansible.
+• Dockerfile is necessary
+• Website can restart automatically if the server is rebooted.
+• In case of reboot all the data of the site are persisted (images, user accounts, articles, ...).
+• It is possible to deploy website on several servers in parallel
+• The script must be able to function in an automated way with for only assumption an ubuntu 20.04 LTS like OS of the target instance running an SSH daemon and with Python installed.
+• It must have a docker-compose.yml.
+• Need to ensure that your SQL database works with WordPress and PHPMyAdmin.
+• You will need to make sure that, depending on the URL requested, your server redirects to the correct site.
+
+Technology :
+• Docker • Ansible • Mariadb • Nginx • Php • Phpmyadmin • Wordpress
+
+Website : chinglinlee.com
+
