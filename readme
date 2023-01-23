@@ -6,7 +6,7 @@ Cloud2 = Version 2 works
        - Copy my whole projet Inception in remote server  
        - start the program Inception by Ansible in using command :
          docker-compose -f docker-compose.yml up --build -d
-         * Inception : deployement of one website Wordpress in differents containers (nginx, mariadb, wordpress...) bye docker
+         * Inception : deployement of one website Wordpress in differents containers (nginx, mariadb, wordpress...) by docker
 
 Cloud_ok = Version 1 works
       = ansible -> module docker 
